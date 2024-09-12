@@ -4,30 +4,41 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333; /* Couleur de texte par défaut en gris foncé */
 }
 
 /* Style du header et de la navigation */
 header {
-    background-color: #333;
-    padding: 10px;
+    background-color: #333; /* Noir foncé */
+    padding: 15px 0;
+    text-align: center;
 }
 
 header nav ul {
     list-style-type: none;
-    text-align: center;
     padding: 0;
     margin: 0;
 }
 
 header nav ul li {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 30px;
+}
+
+header nav ul li:last-child {
+    margin-right: 0;
 }
 
 header nav ul li a {
-    color: white;
+    color: #f4f4f4; /* Couleur blanche pour les liens */
     text-decoration: none;
     font-weight: bold;
+    font-size: 18px;
+    transition: color 0.3s ease; /* Transition douce pour les changements de couleur */
+}
+
+header nav ul li a:hover {
+    color: #007bff; /* Couleur bleue sur survol */
 }
 
 /* Style des sections */
@@ -36,7 +47,7 @@ section {
     padding: 20px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
 }
 
@@ -55,6 +66,7 @@ section {
     border: none;
     cursor: pointer;
     width: 100px;
+    transition: background-color 0.3s ease;
 }
 
 #reservationForm button:hover {
@@ -101,7 +113,7 @@ section {
     border: 1px solid #ccc;
 }
 
-/* Ajustements pour la section Contact */
+/* Section Contact */
 #contact {
     text-align: center;
 }
@@ -109,6 +121,7 @@ section {
 #contact h2 {
     margin-bottom: 20px;
     font-size: 32px;
+    color: #333;
 }
 
 #contact p {
@@ -119,7 +132,7 @@ section {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #333;
+    background-color: #222; /* Noir foncé pour le pied de page */
     color: white;
     font-size: 14px;
 }
@@ -162,7 +175,7 @@ footer {
 
     /* Ajustement de la taille des images */
     #home img {
-        height: 300px; /* Réduction de la hauteur de l'image */
+        height: 300px;
     }
 
     /* Ajustement du texte dans la section accueil */
