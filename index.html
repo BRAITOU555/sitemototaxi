@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi Moto Parisiens</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Assurez-vous que votre fichier CSS est lié ici -->
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#reservation">Réservation</a></li>
+                <li><a href="#services">Nos Services</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Accueil avec image en bande -->
+    <section id="home">
+        <img src="DALL·E-2024-09-10-18.14.jpg" alt="Taxi Moto devant la Tour Eiffel">
+        <h1>Bienvenue sur Taxi Moto Paris</h1>
+        <p>Service rapide et sécurisé pour vos déplacements dans Paris et vers les gares et aéroports.</p>
+    </section>
+
+    <!-- Section Réservation -->
+    <section id="reservation">
+        <h2>Réservez votre Taxi Moto</h2>
+        <form id="reservationForm">
+            <label for="pickup">Adresse de départ :</label>
+            <input type="text" id="pickup" name="pickup" placeholder="Entrez votre adresse de départ" required>
+
+            <!-- Bouton pour géolocaliser l'utilisateur -->
+            <button type="button" id="geolocate">Utiliser ma position actuelle</button>
+
+            <label for="destination">Adresse de destination :</label>
+            <input type="text" id="destination" name="destination" placeholder="Entrez votre destination" required>
+
+            <label for="date">Date :</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Heure :</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="submit">Réserver</button>
+        </form>
+
+        <!-- Zone pour afficher la carte -->
+        <div id="map"></div>
+
+        <!-- Zone pour afficher le tarif estimé -->
+        <div id="price-estimate">
+            <h3>Tarif estimé : <span id="price"></span> €</h3>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Email : contact@taximotoparis.com</p>
+        <p>Téléphone : +33 1 23 45 67 89</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Taxi Moto Paris. Tous droits réservés.
+    </footer>
+
+    <!-- Script Google Maps avec Géolocalisation et Autocomplete -->
+    <script>
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: { lat: 48.8566, lng: 2.3522 }, // Coordonnées de Paris
+        });
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        const pickupInput = document.getElementById('pickup');
+        const destinationInput = document.getElementById('destination');
+        const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput);
+        const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const pickup = document.getElementById('pickup').value;
+            const destination = document.getElementById('destination').value;
+
+            calculateAndDisplayRoute(directionsService, directionsRenderer, pickup, destination);
+        });
+    }
+
+    document.getElementById('geolocate').addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                getAddressFromCoordinates(latitude, longitude);
+            }, function(error) {
+                alert("Erreur lors de la géolocalisation : " + error.message);
+            });
+        } else {
+            alert("La géolocalisation n'est pas supportée par votre navigateur.");
+        }
+    });
+
+    function getAddressFromCoordinates(lat, lng) {
+        const geocoder = new google.maps.Geocoder();
+        const latLng = { lat, lng };
+        geocoder.geocode({ location: latLng }, (results, status) => {
+            if (status === "OK") {
+                if (results[0]) {
+                    document.getElementById('pickup').value = results[0].formatted_address;
+                } else {
+                    alert("Aucune adresse trouvée.");
+                }
+            } else {
+                alert("Erreur lors de la récupération de l'adresse : " + status);
+            }
+        });
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer, pickup, destination) {
+        directionsService.route({
+            origin: pickup,
+            destination: destination,
+            travelMode: google.maps.TravelMode.DRIVING,
+        }, (response, status) => {
+            if (status === "OK") {
+                directionsRenderer.setDirections(response);
+
+                const distance = response.routes[0].legs[0].distance.value / 1000;
+                const price = calculatePrice(distance);
+                document.getElementById('price').textContent = price.toFixed(2);
+            } else {
+                alert("Erreur lors de la récupération de l'itinéraire : " + status);
+            }
+        });
+    }
+
+    function calculatePrice(distance) {
+        const basePrice = 30;
+        const pricePerKm = 2;
+        return basePrice + (distance * pricePerKm);
+    }
+    </script>
+
+    <!-- Appel à l'API Google Maps avec la bibliothèque Places -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwy920q_Af5fVGOTmZ6xXBJfaQHV6S4BI&libraries=places&callback=initMap"></script>
+
+</body>
+</html>
