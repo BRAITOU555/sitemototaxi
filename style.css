@@ -66,33 +66,33 @@ section {
     object-fit: cover;
 }
 
-/* Section d'accueil - Ajustement du texte pour éviter la superposition */
+/* Section d'accueil */
 #home {
     position: relative;
-    height: 400px; /* Ajustement de la hauteur totale pour que l'image et le texte aient assez d'espace */
+    height: 400px;
 }
 
 #home h1 {
     position: absolute;
-    top: 35%;  /* Ajustement de la position pour éviter la superposition avec l'image */
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 28px; /* Ajustement de la taille pour éviter la superposition */
+    font-size: 36px;
     font-weight: bold;
     text-shadow: 2px 2px 4px #000;
     text-align: center;
-    color: white; /* S'assurer que le texte est bien visible */
+    color: white;
 }
 
 #home p {
     position: absolute;
-    top: 55%; /* Ajustement de la position pour éviter la superposition */
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px; /* Ajustement de la taille pour les petits écrans */
+    font-size: 18px;
     text-shadow: 2px 2px 4px #000;
     text-align: center;
-    color: white; /* S'assurer que le texte est bien visible */
+    color: white;
 }
 
 /* Bouton Réserver figé en haut à droite */
@@ -147,7 +147,7 @@ section {
         font-size: 16px;
     }
 
-    /* Les boutons prennent toute la largeur sur mobile */
+    /* Le bouton prend toute la largeur sur mobile */
     #reservationForm button {
         width: 100%;
         padding: 12px;
@@ -155,18 +155,24 @@ section {
 
     /* Ajustement de la taille des images */
     #home img {
-        height: 300px; /* Réduction de la hauteur de l'image sur mobile */
+        height: 300px; /* Réduction de la hauteur de l'image */
     }
 
     /* Ajustement du texte dans la section accueil */
     #home h1 {
         font-size: 24px; /* Réduction de la taille du texte sur mobile */
-        top: 30%;
+        position: static; /* Supprime la position absolue pour mobile */
+        transform: none; /* Supprime le décalage */
+        text-align: center; /* Centrer le texte */
+        margin-top: 20px; /* Ajouter de l'espace en haut */
     }
 
     #home p {
         font-size: 16px;
-        top: 50%;
+        position: static; /* Supprime la position absolue pour mobile */
+        transform: none;
+        text-align: center;
+        margin-top: 10px; /* Ajouter de l'espace en haut */
     }
 
     /* Ajustement du bouton Réserver */
