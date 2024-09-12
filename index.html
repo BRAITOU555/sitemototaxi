@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation Taxi Moto à Paris</title>
+    <style>
+        /* Style global du site */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Barre de navigation */
+        nav {
+            background-color: #333;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section d'accueil avec image en bande */
+        #home {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        #home img {
+            width: 100%;
+            max-height: 600px;
+            object-fit: cover;
+            filter: brightness(60%);
+        }
+
+        #home h1 {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        #home p {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Section Nos Services */
+        #services {
+            padding: 50px 20px;
+            background-color: white;
+            text-align: center;
+        }
+
+        #services h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #services .service-box {
+            display: inline-block;
+            width: 30%;
+            padding: 20px;
+            box-sizing: border-box;
+            margin: 10px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #services .service-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        #services .service-box p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        /* Section Pourquoi nous choisir */
+        #why-choose-us {
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        #why-choose-us h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #why-choose-us .advantage {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        #why-choose-us .advantage img {
+            width: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        /* Section Réservation */
+        #reservation {
+            padding: 50px 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 50px auto;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Zone d'affichage de la carte et du tarif estimé */
+        #map {
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        #price-estimate h3 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        /* Section Témoignages */
+        #testimonials {
+            padding: 50px 20px;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        #testimonials h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #testimonials .testimonial-box {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Section contact */
+        #contact {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        #contact p {
+            font-size: 18px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#reservation">Réservation</a></li>
+                <li><a href="#services">Nos Services</a></li>
+                <li><a href="#testimonials">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Accueil avec image en bande -->
+    <section id="home">
+        <img src="DALL·E-2024-09-10-18.14.jpg" alt="Taxi Moto devant la Tour Eiffel">
+        <h1>Bienvenue sur Taxi Moto Paris</h1>
+        <p>Service rapide et sécurisé pour vos déplacements dans Paris et vers les aéroports.</p>
+    </section>
+
+   <!-- Section Nos Services sans images -->
+<section id="services" style="padding: 50px 20px; background-color: white; text-align: center;">
+    <h2>Nos Services</h2>
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <!-- Service Rapide Paris -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #333;">Service rapide Paris</h3>
+            <p style="font-size: 18px; color: #555; line-height: 1.6;">
+                Déplacements rapides dans tout Paris en taxi moto pour vos trajets professionnels et personnels.
+            </p>
+        </div>
+        <!-- Service Aéroport Taxi Moto -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #333;">Service aéroport taxi moto</h3>
+            <p style="font-size: 18px; color: #555; line-height: 1.6;">
+                Transferts vers les aéroports parisiens : Roissy-Charles de Gaulle, Orly et Le Bourget.
+            </p>
+        </div>
+        <!-- Taxi Moto Professionnel -->
+        <div style="margin-bottom: 30px;">
+            <h3 style="color: #333;">Taxi moto professionnel</h3>
+            <p style="font-size: 18px; color: #555; line-height: 1.6;">
+                Service professionnel pour les entreprises, avec facturation simple et flexible.
+            </p>
+        </div>
+    </div>
+</section>
+
+    <!-- Section Présentation de la Flotte -->
+<section id="fleet" style="padding: 50px 20px; background-color: #fff;">
+    <h2 style="text-align: center;">Une grande flotte de taxis motos à Paris pour vous servir</h2>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 20px; max-width: 1200px; margin: 0 auto;">
+        
+        <!-- Bloc de texte -->
+        <div style="flex: 1; min-width: 300px;">
+            <p style="font-size: 18px; color: #555; line-height: 1.6; max-width: 600px;">
+                Avec plus de 60 chauffeurs professionnels expérimentés, notre compagnie de taxi moto possède la flotte la plus réactive et fiable du marché du transport à Paris. Chaque jour, nous répondons à vos demandes concernant la disponibilité de nos taxis motos, que ce soit par un simple appel à notre standard ou via notre service de réservation en ligne.
+            </p>
+            <p style="font-size: 18px; color: #555; line-height: 1.6; max-width: 600px;">
+                Que ce soit au départ des grandes villes d’Île-de-France, pour un transfert vers les aéroports de Paris (Roissy-Charles de Gaulle, Orly, Beauvais) ou pour un déplacement en taxi moto à Paris intra-muros, nos motos Honda Goldwing haut de gamme sont à votre disposition. Profitez d'un service de transport rapide, sécurisé et confortable, votre solution de mobilité en taxi moto à Paris et en Île-de-France.
+            </p>
+            <p style="font-size: 18px; color: #555; line-height: 1.6; max-width: 600px;">
+                Voyagez sans stress et évitez les embouteillages grâce à nos taxis motos. Nos chauffeurs professionnels vous garantissent un trajet ponctuel, sûr et agréable. C'est le moyen le plus efficace pour vos déplacements professionnels ou personnels, avec une réservation facile et des tarifs compétitifs. Faites confiance à notre expertise en transport moto pour tous vos voyages à Paris et en Île-de-France.
+            </p>
+        </div>
+        
+        <!-- Image de la flotte -->
+        <div style="flex: 1; min-width: 300px;">
+            <img src="DALL·E-2024-09-10-19.23.jpg" alt="Flotte de Taxi Motos Honda Goldwing" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        </div>
+
+    </div>
+</section>
+
+ <!-- Section Pourquoi nous choisir -->
+<section id="why-choose-us" style="padding: 50px 20px; background-color: #f4f4f4; text-align: center;">
+    <h2>Pourquoi nous choisir ?</h2>
+    <div class="advantage">
+        <p style="font-size: 18px; color: #555; margin-bottom: 15px;">
+            <strong>Gain de temps</strong><br>
+            Gagnez du temps en évitant les embouteillages grâce à nos motos rapides et sécurisées.
+        </p>
+    </div>
+    <div class="advantage">
+        <p style="font-size: 18px; color: #555; margin-bottom: 15px;">
+            <strong>Confort</strong><br>
+            Profitez du confort de nos motos Honda Goldwing pour vos déplacements en toute sérénité.
+        </p>
+    </div>
+    <div class="advantage">
+        <p style="font-size: 18px; color: #555; margin-bottom: 15px;">
+            <strong>Disponibilité</strong><br>
+            Réservez facilement à tout moment, 24/7, pour des trajets urgents ou anticipés.
+        </p>
+    </div>
+</section>
+
+
+    <!-- Section Témoignages -->
+    <section id="testimonials">
+        <h2>Ce que disent nos clients</h2>
+        <div class="testimonial-box">
+            <p>"Excellent service, toujours à l'heure et très pratique pour éviter les bouchons !" – Pierre L.</p>
+        </div>
+        <div class="testimonial-box">
+            <p>"J'ai pu attraper mon vol sans stress grâce à ce service de taxi moto, je recommande vivement !" – Julie M.</p>
+        </div>
+    </section>
+
+    <!-- Section Réservation -->
+    <section id="reservation">
+        <h2>Réservez votre Taxi Moto</h2>
+        <form id="reservationForm">
+            <label for="pickup">Adresse de départ :</label>
+            <input type="text" id="pickup" name="pickup" placeholder="Entrez votre adresse de départ" required>
+
+            <!-- Bouton pour géolocaliser l'utilisateur -->
+            <button type="button" id="geolocate">Utiliser ma position actuelle</button>
+
+            <label for="destination">Adresse de destination :</label>
+            <input type="text" id="destination" name="destination" placeholder="Entrez votre destination" required>
+
+            <label for="date">Date :</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Heure :</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="submit">Réserver</button>
+        </form>
+
+        <!-- Zone pour afficher la carte -->
+        <div id="map"></div>
+
+        <!-- Zone pour afficher le tarif estimé -->
+        <div id="price-estimate">
+            <h3>Tarif estimé : <span id="price"></span> €</h3>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Email : contact@taximotoparis.com</p>
+        <p>Téléphone : +33 1 23 45 67 89</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Taxi Moto Paris. Tous droits réservés.
+    </footer>
+
+    <!-- Script Google Maps avec Géolocalisation et Autocomplete -->
+    <script>
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: { lat: 48.8566, lng: 2.3522 }, // Coordonnées de Paris
+        });
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
+
+        // Autocomplete pour les adresses
+        const pickupInput = document.getElementById('pickup');
+        const destinationInput = document.getElementById('destination');
+        const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput);
+        const destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput);
+
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const pickup = document.getElementById('pickup').value;
+            const destination = document.getElementById('destination').value;
+
+            calculateAndDisplayRoute(directionsService, directionsRenderer, pickup, destination);
+        });
+    }
+
+    // Géolocalisation de l'utilisateur
+    document.getElementById('geolocate').addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                getAddressFromCoordinates(latitude, longitude);
+            }, function(error) {
+                alert("Erreur lors de la géolocalisation : " + error.message);
+            });
+        } else {
+            alert("La géolocalisation n'est pas supportée par votre navigateur.");
+        }
+    });
+
+    // Utiliser l'API Geocoding de Google Maps pour obtenir l'adresse
+    function getAddressFromCoordinates(lat, lng) {
+        const geocoder = new google.maps.Geocoder();
+        const latLng = { lat: lat, lng: lng };
+        geocoder.geocode({ location: latLng }, (results, status) => {
+            if (status === "OK") {
+                if (results[0]) {
+                    document.getElementById('pickup').value = results[0].formatted_address; // Remplit le champ adresse
+                } else {
+                    alert("Aucune adresse trouvée.");
+                }
+            } else {
+                alert("Erreur lors de la récupération de l'adresse : " + status);
+            }
+        });
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer, pickup, destination) {
+        directionsService.route(
+            {
+                origin: pickup,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING,
+            },
+            (response, status) => {
+                if (status === "OK") {
+                    directionsRenderer.setDirections(response);
+
+                    const distance = response.routes[0].legs[0].distance.value / 1000; // Convertir en kilomètres
+                    const price = calculatePrice(distance);
+                    document.getElementById('price').textContent = price.toFixed(2); // Afficher le prix estimé
+                } else {
+                    alert("Erreur lors de la récupération de l'itinéraire : " + status);
+                }
+            }
+        );
+    }
+
+    function calculatePrice(distance) {
+        const basePrice = 30; // Prix de base en euros
+        const pricePerKm = 2; // Prix par kilomètre supplémentaire
+        return basePrice + (distance * pricePerKm);
+    }
+    </script>
+
+    <!-- Appel à l'API Google Maps avec la bibliothèque Places -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwy920q_Af5fVGOTmZ6xXBJfaQHV6S4BI&libraries=places&callback=initMap"></script>
+<!-- Bouton Réserver figé en haut à droite -->
+<a href="#reservation" id="fixedReserveButton" style="text-decoration: none;">
+    <button style="position: fixed; top: 20px; right: 20px; background-color: #28a745; color: white; border: none; border-radius: 50px; padding: 10px 16px; font-size: 14px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); cursor: pointer; z-index: 1000; width: auto; max-width: 140px;">
+        Réserver
+    </button>
+</a>
+
+
+</body>
+</html>
