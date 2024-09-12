@@ -20,7 +20,7 @@ header nav ul {
 }
 
 header nav ul li {
-    display: inline;
+    display: inline-block;
     margin-right: 20px;
 }
 
@@ -47,7 +47,6 @@ section {
     width: calc(100% - 20px);
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-right: 10px;
 }
 
 #reservationForm button {
@@ -55,45 +54,43 @@ section {
     color: white;
     border: none;
     cursor: pointer;
+    width: 100px;
 }
 
 #reservationForm button:hover {
     background-color: #0056b3;
 }
 
-/* Style des images dans la section accueil */
+/* Section d'accueil avec image en bande */
 #home img {
     width: 100%;
-    max-height: 500px;
+    max-height: 600px;
     object-fit: cover;
 }
 
-/* Section d'accueil */
 #home {
     position: relative;
+    text-align: center;
+    color: white;
 }
 
 #home h1 {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 48px;
     font-weight: bold;
     text-shadow: 2px 2px 4px #000;
-    color: white;
-    text-align: center;
 }
 
 #home p {
     position: absolute;
-    top: 65%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
     text-shadow: 1px 1px 2px #000;
-    color: white;
-    text-align: center;
 }
 
 /* Zone pour afficher la carte */
@@ -152,7 +149,7 @@ footer {
 
     /* Ajustement du formulaire de réservation */
     #reservationForm input, #reservationForm button {
-        width: calc(100% - 20px);
+        width: 100%;
         padding: 12px;
         font-size: 16px;
     }
