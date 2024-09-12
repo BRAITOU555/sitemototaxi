@@ -66,6 +66,58 @@ section {
     object-fit: cover;
 }
 
+/* Section d'accueil */
+#home h1 {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px; /* Réduire la taille sur mobile */
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000;
+    text-align: center; /* S'assurer que le texte est bien centré */
+}
+
+#home p {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px; /* Réduire la taille du texte sur mobile */
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+}
+
+/* Ajuster la taille de l'image */
+#home img {
+    width: 100%;
+    max-height: 300px; /* Réduire la hauteur de l'image sur mobile */
+    object-fit: cover;
+}
+
+/* Bouton Réserver figé en haut à droite */
+#fixedReserveButton {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 16px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    width: auto;
+    max-width: 140px;
+    text-decoration: none;
+}
+
+#fixedReserveButton button:hover {
+    background-color: #218838;
+}
+
 /* Styles spécifiques pour les petits écrans (768px ou moins) */
 @media screen and (max-width: 768px) {
     body {
@@ -105,7 +157,7 @@ section {
     #home img {
         max-height: 300px;
     }
-    
+
     /* Assurer que les boutons prennent toute la largeur de l'écran */
     button {
         width: 100%;
