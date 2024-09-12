@@ -1,3 +1,4 @@
+/* Styles globaux */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -5,6 +6,7 @@ body {
     padding: 0;
 }
 
+/* Style du header et de la navigation */
 header {
     background-color: #333;
     padding: 10px;
@@ -13,6 +15,8 @@ header {
 header nav ul {
     list-style-type: none;
     text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 header nav ul li {
@@ -26,6 +30,7 @@ header nav ul li a {
     font-weight: bold;
 }
 
+/* Style des sections */
 section {
     margin: 20px;
     padding: 20px;
@@ -34,6 +39,7 @@ section {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Style du formulaire de réservation */
 #reservationForm input, #reservationForm button {
     padding: 10px;
     margin-bottom: 10px;
@@ -53,8 +59,74 @@ section {
     background-color: #0056b3;
 }
 
+/* Style des images dans la section accueil */
 #home img {
     width: 100%;
     max-height: 400px;
     object-fit: cover;
+}
+
+/* Styles spécifiques pour les petits écrans (768px ou moins) */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px; /* Ajuster la taille de la police pour mobile */
+    }
+
+    /* Adaptation de la navigation sur mobile */
+    header nav ul li {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px; /* Espacement entre les liens sur mobile */
+    }
+
+    header nav ul {
+        padding: 10px;
+    }
+
+    /* Sections */
+    section {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    /* Ajustement du formulaire de réservation sur mobile */
+    #reservationForm input, #reservationForm button {
+        padding: 12px;
+        font-size: 16px; /* Adapter la taille de la police */
+    }
+
+    /* Les boutons prennent toute la largeur sur mobile */
+    #reservationForm button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    /* Ajuster les images */
+    #home img {
+        max-height: 300px;
+    }
+    
+    /* Assurer que les boutons prennent toute la largeur de l'écran */
+    button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Ajout d'un espacement dans les sections */
+    section {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    /* Adaptation de la présentation de la navigation */
+    header nav ul {
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+
+    header nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
 }
